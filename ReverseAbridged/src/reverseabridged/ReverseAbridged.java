@@ -16,40 +16,44 @@ import java.util.List;
  */
 public class ReverseAbridged 
 {
-    private void createAbridgedFasta(List<String> seq)
+    /**
+     * creates a reversed abridged output .fasta file
+     * @param seq is the list of reversed sequences from input file
+     */
+    private void createAbridgedFasta(List<String> revSeqList)
     {
         int count = 1;
         BufferedWriter bufferedWriter = null;
         try 
         {
-            File myFile = new File("C:\\Users\\abiaps\\Downloads\\dummyout.fasta");
-            if (!myFile.exists()) 
+            File outFile = new File("C:\\Users\\abiaps\\Downloads\\dummyout.fasta");
+            if (!outFile.exists()) 
             {
-                myFile.createNewFile();
+                outFile.createNewFile();
             }
-            Writer writer = new FileWriter(myFile);
+            Writer writer = new FileWriter(outFile);
             bufferedWriter = new BufferedWriter(writer);
-            StringBuilder fullStr = new StringBuilder();
-            for (String seq1 : seq) 
+            StringBuilder writeStr = new StringBuilder();
+            for (String seq : revSeqList) 
             {
-                fullStr.append(">REV_").append(count).append(" reversed\n");
-                if(seq1.length() > 80)
+                writeStr.append(">REV_").append(count).append(" reversed\n");
+                if(seq.length() > 80)
                 {
-                   int end = 80, st = 0;
-                   while(end < seq1.length())
+                   int endInd = 80, stInd = 0;
+                   while(endInd < seq.length())
                    {
-                       fullStr.append(seq1.substring(st, end)).append("\n");
-                       st = end;
-                       end += 80;
+                       writeStr.append(seq.substring(stInd, endInd)).append("\n");
+                       stInd = endInd;
+                       endInd += 80;
                    }
-                   if(st < seq1.length())
+                   if(stInd < seq.length())
                    {
-                       fullStr.append(seq1.substring(st)).append("\n");
+                       writeStr.append(seq.substring(stInd)).append("\n");
                    }                       
                 }
                 count++;
             }
-            bufferedWriter.write(fullStr.toString());
+            bufferedWriter.write(writeStr.toString());
         } 
         catch (IOException e) 
         {
@@ -68,18 +72,18 @@ public class ReverseAbridged
 
     public static void main(String[] args) 
     {
-        ReverseAbridged rab = new ReverseAbridged();
-        String file = "C:\\Users\\abiaps\\Downloads\\dummy.fasta";
+        ReverseAbridged revAbr = new ReverseAbridged();
+        String inFile = "C:\\Users\\abiaps\\Downloads\\dummy.fasta";
 	try
         {            
-            BufferedReader inputFile     = new BufferedReader( new FileReader( file ) );
+            BufferedReader inputFile = new BufferedReader( new FileReader(inFile));
             StringBuilder   sb = new StringBuilder();
-            String         line   = inputFile.readLine();
+            String line = inputFile.readLine();
             List<String> seq = new ArrayList<>();
             if( line == null )
-                throw new IOException( file + " is an empty file" );
+                throw new IOException( inFile + " is an empty file" );
             if( line.charAt( 0 ) != '>' )
-                throw new IOException( "First line of " + file + " should start with '>'" );
+                throw new IOException( "First line of " + inFile + " should start with '>'" );
             else
             {
                 for( line = inputFile.readLine().trim(); line != null; line = inputFile.readLine() )
@@ -103,11 +107,11 @@ public class ReverseAbridged
                 }                        
             }
             // write to file
-            rab.createAbridgedFasta(seq);
+            revAbr.createAbridgedFasta(seq);
       }
       catch(IOException e)
       {
-        System.out.println("Error when reading "+file);
+        System.out.println("Error when reading " + inFile);
         e.printStackTrace();
       }
     }    
