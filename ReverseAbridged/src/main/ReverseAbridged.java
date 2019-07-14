@@ -88,6 +88,11 @@ public class ReverseAbridged
         return outFile;
     }
     
+    /**
+     * reads input file and produces list of strings of sequences
+     * @param inFile
+     * @return 
+     */
     private List<String> readInputFasta(String inFile)
     {        
         List<String> seq = new ArrayList<>();
@@ -168,7 +173,13 @@ public class ReverseAbridged
         }
       return seq; 
     }
-        
+    
+    /**
+     * api to get reversed abridge of a given input file
+     * @param inFile input file path
+     * @param outFile output file path
+     * @return 
+     */    
     public File getReversedFasta(String inFile, String outFile)
     {
         List<String> seq = readInputFasta(inFile);
