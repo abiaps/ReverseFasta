@@ -63,7 +63,7 @@ public class ReverseAbridgedJUnitTest {
      /**
       * tests invalid file
       * an input file with only one invalid sequence
-      * the header or description does not start with >
+      * contains one seq with description not starting with >
       */
      @Test
      public void invalidTest() 
@@ -83,6 +83,7 @@ public class ReverseAbridgedJUnitTest {
       * tests invalid file. 
       * skips invalid sequences
       * if the description does not start with >, skip the invalid sequence
+      * this input file contains two invalid sequences in between
       */
      @Test
      public void invalidTestOne() 
@@ -100,18 +101,104 @@ public class ReverseAbridgedJUnitTest {
      
      /**
       * tests huge file. 
+      * this is a stress test to run 896177 lines of fasta file
+      * this file is taken from ftp://ftp.ncbi.nlm.nih.gov/genomes/Cricetulus_griseus/protein/
       */
-//     @Test
-//     public void hugeFileTest() 
-//     {
-//        try {
-//            ReverseAbridged rab = new ReverseAbridged();
-//            File outputFile = rab.getReversedFasta("resources/input/dummyHuge.fasta","resources/output/dummyHugeOut.fasta");
-//            File expectedFile = new File("resources/expected/dummyHugeExp.fasta");
-//            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
-//        } 
-//        catch (IOException ex) {
-//            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//     }
+     @Test
+     public void hugeFileTest() 
+     {
+        try {
+            ReverseAbridged rab = new ReverseAbridged();
+            File outputFile = rab.getReversedFasta("resources/input/dummyHuge.fasta","resources/output/dummyHugeOut.fasta");
+            assertNotNull(FileUtils.readLines(outputFile));
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     
+     /**
+     * tests non-empty files with intermediate invalid sequences
+     */
+     @Test
+     public void simpleTestOne() 
+     {
+        try {
+            ReverseAbridged rab = new ReverseAbridged();
+            File outputFile = rab.getReversedFasta("resources/input/dummy1.fasta", "resources/output/dummyOut1.fasta");
+            File expectedFile = new File("resources/expected/dummyExp1.fasta");
+            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     
+     /**
+     * tests non-empty files with intermediate invalid sequences (another variation)
+     */
+     @Test
+     public void simpleTestTwo() 
+     {
+        try {
+            ReverseAbridged rab = new ReverseAbridged();
+            File outputFile = rab.getReversedFasta("resources/input/dummy2.fasta", "resources/output/dummyOut2.fasta");
+            File expectedFile = new File("resources/expected/dummyExp2.fasta");
+            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     
+     /**
+     * tests non-empty files with intermediate invalid sequences (another variation)
+     */
+     @Test
+     public void simpleTestThree() 
+     {
+        try {
+            ReverseAbridged rab = new ReverseAbridged();
+            File outputFile = rab.getReversedFasta("resources/input/dummy3.fasta", "resources/output/dummyOut3.fasta");
+            File expectedFile = new File("resources/expected/dummyExp3.fasta");
+            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     
+     /**
+     * tests non-empty files with intermediate invalid sequences (another variation)
+     */
+     @Test
+     public void simpleTestFour() 
+     {
+        try {
+            ReverseAbridged rab = new ReverseAbridged();
+            File outputFile = rab.getReversedFasta("resources/input/dummy4.fasta", "resources/output/dummyOut4.fasta");
+            File expectedFile = new File("resources/expected/dummyExp4.fasta");
+            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     
+     /**
+     * tests non-empty files with intermediate invalid sequences (another variation)
+     */
+     @Test
+     public void simpleTestFive() 
+     {
+        try {
+            ReverseAbridged rab = new ReverseAbridged();
+            File outputFile = rab.getReversedFasta("resources/input/dummy5.fasta", "resources/output/dummyOut5.fasta");
+            File expectedFile = new File("resources/expected/dummyExp5.fasta");
+            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
 }
