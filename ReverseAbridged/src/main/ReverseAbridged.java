@@ -1,4 +1,4 @@
-package reverseabridged;
+package main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,7 +24,8 @@ public class ReverseAbridged
     {
         int count = 1;
         BufferedWriter bufferedWriter = null;
-        String filePath = "C:\\Users\\abiaps\\Downloads\\dummyout2.fasta";
+//        String filePath = "C:\\Users\\abiaps\\Downloads\\dummyout2.fasta";
+        String filePath = "../dummyout.fasta";
         File outFile = new File(filePath);
         try 
         {            
@@ -35,6 +36,16 @@ public class ReverseAbridged
             Writer writer = new FileWriter(outFile);
             bufferedWriter = new BufferedWriter(writer);
             StringBuilder writeStr = new StringBuilder();
+            if(revSeqList.isEmpty())
+            {
+                bufferedWriter.write("Empty input file!");
+                return outFile;
+            }
+            if(revSeqList.size() > 0 && revSeqList.get(revSeqList.size()-1).equals("Invalid fasta format!"))
+            {
+                bufferedWriter.write(revSeqList.get(revSeqList.size()-1).trim());
+                return outFile;
+            }
             for (String seq : revSeqList) 
             {
                 writeStr.append(">REV_").append(count).append(" reversed\n");
@@ -70,7 +81,8 @@ public class ReverseAbridged
             {
                 if(bufferedWriter != null) bufferedWriter.close();
             } 
-            catch(Exception ex){                 
+            catch(Exception ex){ 
+                    // do nothing
             }
         }
         return outFile;
@@ -86,9 +98,16 @@ public class ReverseAbridged
             StringBuilder   sb = new StringBuilder();
             String line = bufReader.readLine();
             if( line == null )
-                throw new IOException( inFile + " is an empty file" );
+            {
+                System.out.println( inFile + " is an empty file" );
+                return seq;
+            }                
             if( line.charAt( 0 ) != '>' )
-                throw new IOException( "First line of " + inFile + " should start with '>'" );
+            {
+                System.out.println( "First line of " + inFile + " should start with '>'" );
+                seq.add("Invalid fasta format!");  
+                return seq;
+            }                
             else
             {
                 for( line = bufReader.readLine().trim(); line != null; line = bufReader.readLine() )
@@ -137,7 +156,7 @@ public class ReverseAbridged
     
     public static void main(String[] args) 
     {
-        ReverseAbridged revAbr = new ReverseAbridged();
-        revAbr.getReversedFasta("C:\\Users\\abiaps\\Downloads\\dummy.fasta");
+        ReverseAbridged revAbr = new ReverseAbridged();        
+        revAbr.getReversedFasta("../dummy.fasta");
     }    
 }

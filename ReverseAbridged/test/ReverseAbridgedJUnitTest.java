@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import reverseabridged.ReverseAbridged;
+import main.ReverseAbridged;
 
 /**
  *
@@ -23,9 +23,9 @@ public class ReverseAbridgedJUnitTest {
     {
     }
     
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
+    /**
+     * tests non-empty files
+     */
      @Test
      public void simpleTest() 
      {
@@ -40,17 +40,37 @@ public class ReverseAbridgedJUnitTest {
         }
      }
      
-//     @Test
-//     public void complexTest() 
-//     {
-//        try {
-//            ReverseAbridged rab = new ReverseAbridged();
-//            File outputFile = rab.getReversedFasta("C:\\Users\\abiaps\\Downloads\\dummy.fasta");
-//            File expectedFile = new File("C:\\Users\\abiaps\\Downloads\\dummyExp.fasta");
-//            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
-//        } 
-//        catch (IOException ex) {
-//            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//     }
+     /**
+     * tests empty files
+     */
+     @Test
+     public void emptyTest() 
+     {
+        try {
+            ReverseAbridged rab = new ReverseAbridged();
+            File outputFile = rab.getReversedFasta("C:\\Users\\abiaps\\Downloads\\dummyEmpty.fasta");
+            File expectedFile = new File("C:\\Users\\abiaps\\Downloads\\dummyEmptyExp.fasta");
+            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     
+     /**
+      * tests invalid file
+      */
+     @Test
+     public void complexTest() 
+     {
+        try {
+            ReverseAbridged rab = new ReverseAbridged();
+            File outputFile = rab.getReversedFasta("C:\\Users\\abiaps\\Downloads\\dummyInvalid.fasta");
+            File expectedFile = new File("C:\\Users\\abiaps\\Downloads\\dummyInvalidExp.fasta");
+            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
 }
