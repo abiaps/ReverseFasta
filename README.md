@@ -21,24 +21,24 @@
 
   The above line is an example of sequence identifier in the output file.
 
-  # Run this project using Ant build
+  Run this project using Ant build
 
-  # Ant can be installed from  https://ant.apache.org/bindownload.cgi
+  Ant can be installed from  https://ant.apache.org/bindownload.cgi
 
-  # Set ANT_HOME in system variables
+  Set ANT_HOME in system variables
 
-  # Successful installation of Ant can be checked by $ant -v in cmd
+  Successful installation of Ant can be checked by $ant -v in cmd
 
-  # Check if java installed on your machine using $java -version
+  Check if java installed on your machine using $java -version
 
-  # Clone this project
+  Clone this project
 
-  # Go to the dir /ReverseFasta/ReverseAbridged where build.xml is located
+  Go to the dir /ReverseFasta/ReverseAbridged where build.xml is located
 
-  # Run the cmd $ ant run
+  Run the cmd $ ant run
 
-  # You should get Build successful and output files are created under /resources/output/..
+  You should get Build successful and output files are created under /resources/output/..
 
-  # Now to test this application, run the cmd $ ant test
+  Now to test this application, run the cmd $ ant test
 
 
