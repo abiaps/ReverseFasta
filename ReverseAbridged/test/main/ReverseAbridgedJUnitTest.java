@@ -1,3 +1,5 @@
+package main;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +13,6 @@ import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import main.ReverseAbridged;
 
 /**
  *
@@ -31,8 +32,8 @@ public class ReverseAbridgedJUnitTest {
      {
         try {
             ReverseAbridged rab = new ReverseAbridged();
-            File outputFile = rab.getReversedFasta("C:\\Users\\abiaps\\Downloads\\dummy2.fasta");
-            File expectedFile = new File("C:\\Users\\abiaps\\Downloads\\dummy2Exp.fasta");
+            File outputFile = rab.getReversedFasta("resources/input/dummy.fasta");
+            File expectedFile = new File("resources/expected/dummyExp.fasta");
             assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
         } 
         catch (IOException ex) {
@@ -48,8 +49,8 @@ public class ReverseAbridgedJUnitTest {
      {
         try {
             ReverseAbridged rab = new ReverseAbridged();
-            File outputFile = rab.getReversedFasta("C:\\Users\\abiaps\\Downloads\\dummyEmpty.fasta");
-            File expectedFile = new File("C:\\Users\\abiaps\\Downloads\\dummyEmptyExp.fasta");
+            File outputFile = rab.getReversedFasta("resources/input/dummyEmpty.fasta");
+            File expectedFile = new File("resources/expected/dummyEmptyExp.fasta");
             assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
         } 
         catch (IOException ex) {
@@ -65,8 +66,8 @@ public class ReverseAbridgedJUnitTest {
      {
         try {
             ReverseAbridged rab = new ReverseAbridged();
-            File outputFile = rab.getReversedFasta("C:\\Users\\abiaps\\Downloads\\dummyInvalid.fasta");
-            File expectedFile = new File("C:\\Users\\abiaps\\Downloads\\dummyInvalidExp.fasta");
+            File outputFile = rab.getReversedFasta("resources/input/dummyInvalid.fasta");
+            File expectedFile = new File("resources/expected/dummyInvalidExp.fasta");
             assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
         } 
         catch (IOException ex) {

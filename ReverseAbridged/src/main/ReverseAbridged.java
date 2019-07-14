@@ -24,8 +24,7 @@ public class ReverseAbridged
     {
         int count = 1;
         BufferedWriter bufferedWriter = null;
-//        String filePath = "C:\\Users\\abiaps\\Downloads\\dummyout2.fasta";
-        String filePath = "../dummyout.fasta";
+        String filePath = "resources/output/dummyout.fasta";
         File outFile = new File(filePath);
         try 
         {            
@@ -157,6 +156,6 @@ public class ReverseAbridged
     public static void main(String[] args) 
     {
         ReverseAbridged revAbr = new ReverseAbridged();        
-        revAbr.getReversedFasta("../dummy.fasta");
+        revAbr.getReversedFasta("resources/input/dummy.fasta");
     }    
 }
