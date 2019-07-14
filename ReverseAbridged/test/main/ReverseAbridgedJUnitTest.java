@@ -62,12 +62,29 @@ public class ReverseAbridgedJUnitTest {
       * tests invalid file
       */
      @Test
-     public void complexTest() 
+     public void invalidTest() 
      {
         try {
             ReverseAbridged rab = new ReverseAbridged();
             File outputFile = rab.getReversedFasta("resources/input/dummyInvalid.fasta");
             File expectedFile = new File("resources/expected/dummyInvalidExp.fasta");
+            assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ReverseAbridgedJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     
+     /**
+      * tests invalid file
+      */
+     @Test
+     public void invalidTestOne() 
+     {
+        try {
+            ReverseAbridged rab = new ReverseAbridged();
+            File outputFile = rab.getReversedFasta("resources/input/dummyInvalid1.fasta");
+            File expectedFile = new File("resources/expected/dummyInvalidExp1.fasta");
             assertEquals(FileUtils.readLines(outputFile), FileUtils.readLines(expectedFile));
         } 
         catch (IOException ex) {

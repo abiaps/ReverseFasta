@@ -40,13 +40,18 @@ public class ReverseAbridged
                 bufferedWriter.write("Empty input file!");
                 return outFile;
             }
-            if(revSeqList.size() > 0 && revSeqList.get(revSeqList.size()-1).equals("Invalid fasta format!"))
+            if(revSeqList.size() == 1 && revSeqList.get(revSeqList.size()-1).equals("invalid sequence"))
             {
-                bufferedWriter.write(revSeqList.get(revSeqList.size()-1).trim());
+                bufferedWriter.write("Invalid fasta file!");
                 return outFile;
             }
             for (String seq : revSeqList) 
             {
+                if(seq.equals("invalid sequence"))
+                {
+                    count++;
+                    continue;
+                }
                 writeStr.append(">REV_").append(count).append(" reversed\n");
                 if(seq.length() > 80)
                 {
@@ -68,7 +73,10 @@ public class ReverseAbridged
                 }
                 count++;
             }
-            bufferedWriter.write(writeStr.toString().trim());
+            if(writeStr.length() > 0)
+            {
+                bufferedWriter.write(writeStr.toString());
+            }            
         } 
         catch (IOException e) 
         {
@@ -96,39 +104,59 @@ public class ReverseAbridged
             bufReader = new BufferedReader( new FileReader(inFile));
             StringBuilder   sb = new StringBuilder();
             String line = bufReader.readLine();
+            
             if( line == null )
             {
                 System.out.println( inFile + " is an empty file" );
                 return seq;
             }                
-            if( line.charAt( 0 ) != '>' )
+            if( !line.isEmpty() && line.charAt( 0 ) != '>' )
             {
-                System.out.println( "First line of " + inFile + " should start with '>'" );
-                seq.add("Invalid fasta format!");  
-                return seq;
-            }                
-            else
-            {
-                for( line = bufReader.readLine().trim(); line != null; line = bufReader.readLine() )
+                seq.add("invalid sequence");
+                while(!line.isEmpty() && line.trim().charAt(0) != '>')
                 {
-                    if( line.length()>0 && line.charAt( 0 ) == '>' )
-                    {                       
+                    line = bufReader.readLine();// go to the 1st valid desc line
+                }
+            }                
+            
+            for( String currentLine = line; currentLine != null && !currentLine.isEmpty(); currentLine = bufReader.readLine() )
+            {
+                currentLine = currentLine.trim();
+                if( currentLine.length() > 0 && currentLine.charAt( 0 ) == '>' )
+                {                       
+                    if(sb.length() > 0)
+                    {
+                        seq.add(sb.reverse().toString());
+                        sb = new StringBuilder();
+                    }                            
+                } 
+                else 
+                {
+                    if(currentLine.contains(" "))     // a sequence won't contain whitespace
+                    {
+                        // description or corrupt sequence without > or sequence contains space
                         if(sb.length() > 0)
                         {
                             seq.add(sb.reverse().toString());
-                            sb = new StringBuilder();
-                        }                            
-                    } 
-                    else 
+                        }
+                        seq.add("invalid sequence");
+                        sb = new StringBuilder();
+                        // see if the rest of the file contain valid seq, find next > 
+                        while(currentLine.charAt(0) != '>')
+                        {
+                            currentLine = bufReader.readLine();
+                        }
+                    }
+                    else
                     {
-                        sb.append(line.trim());
-                    }                    
-                }
-                if(sb.length() != 0)
-                {
-                    seq.add(sb.reverse().toString());
-                }                        
-            }        
+                        sb.append(currentLine);
+                    }
+                }                    
+            }
+            if(sb.length() != 0)
+            {
+                seq.add(sb.reverse().toString());
+            }   
       }
       catch(IOException e)
       {
@@ -156,6 +184,6 @@ public class ReverseAbridged
     public static void main(String[] args) 
     {
         ReverseAbridged revAbr = new ReverseAbridged();        
-        revAbr.getReversedFasta("resources/input/dummy.fasta");
+        revAbr.getReversedFasta("resources/input/dummyInvalid1.fasta");
     }    
 }
