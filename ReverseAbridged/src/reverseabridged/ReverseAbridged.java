@@ -17,16 +17,17 @@ import java.util.List;
 public class ReverseAbridged 
 {
     /**
-     * creates a reversed abridged output .fasta file
+     * creates a reversed abridged output .fasta file and returns the path for output file
      * @param seq is the list of reversed sequences from input file
      */
-    private void createAbridgedFasta(List<String> revSeqList)
+    private File createAbridgedFasta(List<String> revSeqList)
     {
         int count = 1;
         BufferedWriter bufferedWriter = null;
+        String filePath = "C:\\Users\\abiaps\\Downloads\\dummyout2.fasta";
+        File outFile = new File(filePath);
         try 
-        {
-            File outFile = new File("C:\\Users\\abiaps\\Downloads\\dummyout.fasta");
+        {            
             if (!outFile.exists()) 
             {
                 outFile.createNewFile();
@@ -51,9 +52,13 @@ public class ReverseAbridged
                        writeStr.append(seq.substring(stInd)).append("\n");
                    }                       
                 }
+                else
+                {
+                    writeStr.append(seq).append("\n");
+                }
                 count++;
             }
-            bufferedWriter.write(writeStr.toString());
+            bufferedWriter.write(writeStr.toString().trim());
         } 
         catch (IOException e) 
         {
@@ -68,25 +73,25 @@ public class ReverseAbridged
             catch(Exception ex){                 
             }
         }
+        return outFile;
     }
 
-    public static void main(String[] args) 
-    {
-        ReverseAbridged revAbr = new ReverseAbridged();
-        String inFile = "C:\\Users\\abiaps\\Downloads\\dummy.fasta";
+    private List<String> readInputFasta(String inFile)
+    {        
+        List<String> seq = new ArrayList<>();
+        BufferedReader bufReader = null;
 	try
         {            
-            BufferedReader inputFile = new BufferedReader( new FileReader(inFile));
+            bufReader = new BufferedReader( new FileReader(inFile));
             StringBuilder   sb = new StringBuilder();
-            String line = inputFile.readLine();
-            List<String> seq = new ArrayList<>();
+            String line = bufReader.readLine();
             if( line == null )
                 throw new IOException( inFile + " is an empty file" );
             if( line.charAt( 0 ) != '>' )
                 throw new IOException( "First line of " + inFile + " should start with '>'" );
             else
             {
-                for( line = inputFile.readLine().trim(); line != null; line = inputFile.readLine() )
+                for( line = bufReader.readLine().trim(); line != null; line = bufReader.readLine() )
                 {
                     if( line.length()>0 && line.charAt( 0 ) == '>' )
                     {                       
@@ -105,14 +110,34 @@ public class ReverseAbridged
                 {
                     seq.add(sb.reverse().toString());
                 }                        
-            }
-            // write to file
-            revAbr.createAbridgedFasta(seq);
+            }        
       }
       catch(IOException e)
       {
         System.out.println("Error when reading " + inFile);
         e.printStackTrace();
       }
+      finally
+        {
+            try
+            {
+                if(bufReader != null) bufReader.close();
+            } 
+            catch(Exception ex){                 
+            }
+        }
+      return seq; 
+    }
+    
+    public File getReversedFasta(String inFile)
+    {
+        List<String> seq = readInputFasta(inFile);
+        return createAbridgedFasta(seq);
+    }
+    
+    public static void main(String[] args) 
+    {
+        ReverseAbridged revAbr = new ReverseAbridged();
+        revAbr.getReversedFasta("C:\\Users\\abiaps\\Downloads\\dummy.fasta");
     }    
 }
