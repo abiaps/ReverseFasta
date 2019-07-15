@@ -41,4 +41,6 @@
 
   Now to test this application, run the cmd $ ant test
 
+  Used junit-4.12.jar
+
 
