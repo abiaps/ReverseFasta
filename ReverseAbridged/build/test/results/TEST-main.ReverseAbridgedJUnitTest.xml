@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Abi" name="main.ReverseAbridgedJUnitTest" skipped="0" tests="10" time="3.307" timestamp="2019-07-15T00:36:24">
+<testsuite errors="0" failures="0" hostname="Abi" name="main.ReverseAbridgedJUnitTest" skipped="0" tests="10" time="3.534" timestamp="2019-07-15T02:35:17">
   <properties>
     <property name="default.javac.source" value="1.8" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -76,7 +76,7 @@
     <property name="ant.project.default-target" value="default" />
     <property name="javac.profile.cmd.line.arg" value="" />
     <property name="libs.JAXB-ENDORSED.src" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner main.ReverseAbridgedJUnitTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\abiaps\projects\ReverseFasta\ReverseAbridged\build\test\results\TEST-main.ReverseAbridgedJUnitTest.xml crashfile=C:\Users\abiaps\projects\ReverseFasta\ReverseAbridged\build\junitvmwatcher7265134305533756219.properties propsfile=C:\Users\abiaps\projects\ReverseFasta\ReverseAbridged\build\junit3532403237222122276.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner main.ReverseAbridgedJUnitTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\abiaps\projects\ReverseFasta\ReverseAbridged\build\test\results\TEST-main.ReverseAbridgedJUnitTest.xml crashfile=C:\Users\abiaps\projects\ReverseFasta\ReverseAbridged\build\junitvmwatcher8483593872190334539.properties propsfile=C:\Users\abiaps\projects\ReverseFasta\ReverseAbridged\build\junit1729215424103009202.properties" />
     <property name="built-jar.properties" value="C:\Users\abiaps\projects\ReverseFasta\ReverseAbridged\build\built-jar.properties" />
     <property name="ant.file" value="C:\Users\abiaps\projects\ReverseFasta\ReverseAbridged\build.xml" />
     <property name="libs.junit_4.src" value="C:\Program Files (x86)\NetBeans 8.2\platform\docs\junit-4.12-sources.jar" />
@@ -271,16 +271,16 @@
     <property name="mkdist.disabled" value="false" />
     <property name="sun.arch.data.model" value="32" />
   </properties>
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="invalidTestOne" time="0.031" />
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTest" time="0.015" />
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="emptyTest" time="0.007" />
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="invalidTest" time="0.0" />
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="hugeFileTest" time="3.138" />
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestFive" time="0.0" />
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestFour" time="0.015" />
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestOne" time="0.0" />
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestTwo" time="0.0" />
-  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestThree" time="0.0" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="invalidTestOne" time="0.024" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTest" time="0.006" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="emptyTest" time="0.005" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="invalidTest" time="0.004" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="hugeFileTest" time="3.065" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestFive" time="0.1" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestFour" time="0.116" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestOne" time="0.016" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestTwo" time="0.023" />
+  <testcase classname="main.ReverseAbridgedJUnitTest" name="simpleTestThree" time="0.015" />
   <system-out><![CDATA[resources/input/dummyEmpty.fasta is an empty file
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
